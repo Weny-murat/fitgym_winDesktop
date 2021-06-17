@@ -36,9 +36,18 @@ class SignInFormState extends State<SignInForm> {
           TextFormField(
             obscureText: true,
             decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              suffixIcon: Icon(Icons.vpn_key),
-            ),
+                border: OutlineInputBorder(),
+                suffixIcon: Icon(
+                  Icons.vpn_key,
+                  color: Color(0xff65748D),
+                ),
+                labelText: 'Şifre'),
+            validator: (value) {
+              if (value == null || value.isEmpty || value.length < 8) {
+                return 'Şifreniz hatalı lütfen kontrol edin';
+              }
+              return null;
+            },
           ),
           SizedBox(
             height: size.height / 25,
