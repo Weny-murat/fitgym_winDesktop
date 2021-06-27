@@ -1,4 +1,7 @@
+import 'package:fit_gym/components/components.dart';
+import 'package:fit_gym/screens/mainpage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignInForm extends StatefulWidget {
   @override
@@ -17,42 +20,20 @@ class SignInFormState extends State<SignInForm> {
       key: _formKey,
       child: Column(
         children: <Widget>[
-          TextFormField(
+          CommonFormField(
             controller: _emailController,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                suffixIcon: Icon(
-                  Icons.supervisor_account,
-                  color: Color(0xff65748D),
-                ),
-                labelText: 'Kullanıcı Adı'),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Kullancı Adı hatalı!';
-              }
-              return null;
-            },
+            icon: Icons.supervisor_account,
+            labelText: 'Kullanıcı Adı',
+            isObscure: false,
           ),
           SizedBox(
             height: size.height / 25,
           ),
-          TextFormField(
-            controller: _passwordController,
-            obscureText: true,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                suffixIcon: Icon(
-                  Icons.vpn_key,
-                  color: Color(0xff65748D),
-                ),
-                labelText: 'Şifre'),
-            validator: (value) {
-              if (value == null || value.isEmpty || value.length < 8) {
-                return 'Şifreniz eksik veya hatalı';
-              }
-              return null;
-            },
-          ),
+          CommonFormField(
+              isObscure: true,
+              labelText: 'Şifre',
+              icon: Icons.vpn_key,
+              controller: _passwordController),
           SizedBox(
             height: size.height / 25,
           ),
@@ -61,8 +42,8 @@ class SignInFormState extends State<SignInForm> {
             children: [
               MaterialButton(
                   minWidth: MediaQuery.of(context).size.width / 8,
-                  height: MediaQuery.of(context).size.height / 12,
-                  color: Color(0xff65748D),
+                  height: 60,
+                  color: Color(0xffFE7A2B),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -76,12 +57,13 @@ class SignInFormState extends State<SignInForm> {
                   )),
               MaterialButton(
                   minWidth: MediaQuery.of(context).size.width / 8,
-                  height: MediaQuery.of(context).size.height / 12,
-                  color: Color(0xff65748D),
+                  height: 60,
+                  color: Color(0xffFE7A2B),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text('Processing Data')));
+                      Get.to(() => MainPage());
                     }
                     // _signIn();
                   },
