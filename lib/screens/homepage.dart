@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fit_gym/components/signForm.dart';
+import 'package:fit_gym/components/constants.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -11,7 +12,7 @@ class HomePage extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                color: Color(0xffFE7A2B),
+                color: mainColor,
                 child: Center(
                     child: Text(
                   'Logo, Amblem',
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 50,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xffFE7A2B),
+                      color: mainColor,
                     ),
                   ),
                   SizedBox(

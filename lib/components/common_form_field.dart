@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class CommonFormField extends StatelessWidget {
   const CommonFormField({
@@ -19,30 +20,30 @@ class CommonFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: isObscure,
-      style: TextStyle(color: Color(0xFFF3A87D)),
-      cursorColor: Color(0xffFE7A2B),
+      style: TextStyle(color: mainColor),
+      cursorColor: mainColor,
       controller: _emailController,
       decoration: InputDecoration(
           labelStyle: TextStyle(
-            color: Color(0xffFE7A2B),
+            color: mainColor,
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.0),
             borderSide: BorderSide(
-              color: Color(0xffFE7A2B),
+              color: mainColor,
               width: 2.0,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15.0),
             borderSide: BorderSide(
-              color: Color(0xffFE7A2B),
+              color: mainColor,
               width: 2.0,
             ),
           ),
           suffixIcon: Icon(
             icon,
-            color: Color(0xffFE7A2B),
+            color: mainColor,
           ),
           labelText: labelText),
       validator: (value) {

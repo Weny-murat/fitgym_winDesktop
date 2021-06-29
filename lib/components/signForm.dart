@@ -1,7 +1,8 @@
-import 'package:fit_gym/components/components.dart';
+import 'package:fit_gym/components/common_form_field.dart';
 import 'package:fit_gym/screens/mainpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'constants.dart';
 
 class SignInForm extends StatefulWidget {
   @override
@@ -43,7 +44,7 @@ class SignInFormState extends State<SignInForm> {
               MaterialButton(
                   minWidth: MediaQuery.of(context).size.width / 8,
                   height: 60,
-                  color: Color(0xffFE7A2B),
+                  color: mainColor,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -58,7 +59,7 @@ class SignInFormState extends State<SignInForm> {
               MaterialButton(
                   minWidth: MediaQuery.of(context).size.width / 8,
                   height: 60,
-                  color: Color(0xffFE7A2B),
+                  color: mainColor,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(

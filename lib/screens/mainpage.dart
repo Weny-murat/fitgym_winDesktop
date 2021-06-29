@@ -1,4 +1,6 @@
+import 'package:fit_gym/components/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -7,7 +9,6 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-/// This is the private State class that goes with MyStatefulWidget.
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
@@ -17,18 +18,42 @@ class _MainPageState extends State<MainPage> {
       body: Row(
         children: <Widget>[
           NavigationRail(
+            backgroundColor: mainColor,
+            minWidth: MediaQuery.of(context).size.width / 10,
+            leading: MaterialButton(
+              child: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+                size: 60,
+              ),
+              onPressed: () {
+                Get.back();
+              },
+            ),
+            elevation: 5,
             selectedIndex: _selectedIndex,
             onDestinationSelected: (int index) {
               setState(() {
                 _selectedIndex = index;
               });
             },
-            labelType: NavigationRailLabelType.selected,
+            labelType: NavigationRailLabelType.all,
             destinations: const <NavigationRailDestination>[
               NavigationRailDestination(
-                icon: Icon(Icons.favorite_border),
-                selectedIcon: Icon(Icons.favorite),
-                label: Text('First'),
+                icon: Icon(
+                  Icons.person_add_alt,
+                  color: Colors.white,
+                  size: 50,
+                ),
+                selectedIcon: Icon(
+                  Icons.person_add_alt,
+                  color: Colors.white,
+                  size: 60,
+                ),
+                label: Text(
+                  'Yeni Kayıt',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
               NavigationRailDestination(
                 icon: Icon(Icons.bookmark_border),
