@@ -1,5 +1,6 @@
 import 'package:fit_gym/components/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 class MainPage extends StatefulWidget {
@@ -11,6 +12,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
+  bool isExtended = false;
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +20,30 @@ class _MainPageState extends State<MainPage> {
       body: Row(
         children: <Widget>[
           NavigationRail(
+            groupAlignment: 1,
+            extended: isExtended,
             backgroundColor: mainColor,
-            minWidth: MediaQuery.of(context).size.width / 10,
+            minWidth: 120,
+            minExtendedWidth: 200,
             leading: MaterialButton(
-              child: Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-                size: 60,
+              child:
+                  Icon(isExtended ? Icons.arrow_back : Icons.arrow_right_alt),
+              onPressed: () {
+                setState(() {
+                  isExtended = !isExtended;
+                });
+              },
+            ),
+            trailing: MaterialButton(
+              elevation: 5,
+              height: 65,
+              color: Colors.amberAccent,
+              child: Text(
+                'Çıkış',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
               ),
               onPressed: () {
                 Get.back();
@@ -37,18 +56,36 @@ class _MainPageState extends State<MainPage> {
                 _selectedIndex = index;
               });
             },
-            labelType: NavigationRailLabelType.all,
+            labelType: isExtended
+                ? NavigationRailLabelType.none
+                : NavigationRailLabelType.selected,
             destinations: const <NavigationRailDestination>[
+              NavigationRailDestination(
+                icon: Icon(
+                  Icons.mode_edit,
+                  color: Colors.white,
+                  size: 35,
+                ),
+                selectedIcon: Icon(
+                  Icons.mode_edit,
+                  color: Colors.white,
+                  size: 50,
+                ),
+                label: Text(
+                  'Düzenle',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
               NavigationRailDestination(
                 icon: Icon(
                   Icons.person_add_alt,
                   color: Colors.white,
-                  size: 50,
+                  size: 35,
                 ),
                 selectedIcon: Icon(
                   Icons.person_add_alt,
                   color: Colors.white,
-                  size: 60,
+                  size: 50,
                 ),
                 label: Text(
                   'Yeni Kayıt',
@@ -56,14 +93,20 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               NavigationRailDestination(
-                icon: Icon(Icons.bookmark_border),
-                selectedIcon: Icon(Icons.book),
-                label: Text('Second'),
-              ),
-              NavigationRailDestination(
-                icon: Icon(Icons.star_border),
-                selectedIcon: Icon(Icons.star),
-                label: Text('Third'),
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                  size: 35,
+                ),
+                selectedIcon: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                  size: 50,
+                ),
+                label: Text(
+                  'Ara',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),
