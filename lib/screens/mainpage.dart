@@ -1,7 +1,9 @@
 import 'package:fit_gym/components/constants.dart';
+import 'package:fit_gym/screens/edit_container.dart';
+import 'package:fit_gym/screens/register_container.dart';
+import 'package:fit_gym/screens/search_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:get/get.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -20,14 +22,25 @@ class _MainPageState extends State<MainPage> {
       body: Row(
         children: <Widget>[
           NavigationRail(
+            selectedIconTheme: IconThemeData(
+              color: Colors.white,
+              size: 50,
+            ),
+            unselectedIconTheme: IconThemeData(
+              size: 35,
+              color: Colors.white,
+            ),
             groupAlignment: 1,
             extended: isExtended,
             backgroundColor: mainColor,
             minWidth: 120,
             minExtendedWidth: 200,
             leading: MaterialButton(
-              child:
-                  Icon(isExtended ? Icons.arrow_back : Icons.arrow_right_alt),
+              height: 65,
+              child: Icon(
+                isExtended ? Icons.arrow_back : Icons.arrow_forward,
+                color: Colors.white,
+              ),
               onPressed: () {
                 setState(() {
                   isExtended = !isExtended;
@@ -38,15 +51,20 @@ class _MainPageState extends State<MainPage> {
               elevation: 5,
               height: 65,
               color: Colors.amberAccent,
-              child: Text(
-                'Çıkış',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
+              child: Row(
+                children: [
+                  Icon(Icons.logout),
+                  Text(
+                    '  Çıkış',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
               onPressed: () {
-                Get.back();
+                Navigator.pop(context);
               },
             ),
             elevation: 5,
@@ -62,14 +80,10 @@ class _MainPageState extends State<MainPage> {
             destinations: const <NavigationRailDestination>[
               NavigationRailDestination(
                 icon: Icon(
-                  Icons.mode_edit,
-                  color: Colors.white,
-                  size: 35,
+                  Icons.drive_file_rename_outline,
                 ),
                 selectedIcon: Icon(
                   Icons.mode_edit,
-                  color: Colors.white,
-                  size: 50,
                 ),
                 label: Text(
                   'Düzenle',
@@ -79,13 +93,9 @@ class _MainPageState extends State<MainPage> {
               NavigationRailDestination(
                 icon: Icon(
                   Icons.person_add_alt,
-                  color: Colors.white,
-                  size: 35,
                 ),
                 selectedIcon: Icon(
                   Icons.person_add_alt,
-                  color: Colors.white,
-                  size: 50,
                 ),
                 label: Text(
                   'Yeni Kayıt',
@@ -95,13 +105,9 @@ class _MainPageState extends State<MainPage> {
               NavigationRailDestination(
                 icon: Icon(
                   Icons.search,
-                  color: Colors.white,
-                  size: 35,
                 ),
                 selectedIcon: Icon(
                   Icons.search,
-                  color: Colors.white,
-                  size: 50,
                 ),
                 label: Text(
                   'Ara',
@@ -113,12 +119,23 @@ class _MainPageState extends State<MainPage> {
           const VerticalDivider(thickness: 1, width: 1),
           // This is the main content.
           Expanded(
-            child: Center(
-              child: Text('selectedIndex: $_selectedIndex'),
-            ),
+            child: buildPages(),
           )
         ],
       ),
     );
+  }
+
+  Widget buildPages() {
+    switch (_selectedIndex) {
+      case 0:
+        return EditContainer();
+      case 1:
+        return RegisterContainer();
+      case 2:
+        return SearchContainer();
+      default:
+        return EditContainer();
+    }
   }
 }

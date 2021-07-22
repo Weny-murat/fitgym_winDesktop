@@ -27,9 +27,9 @@ dependencies:
     git:
       url: git://github.com/google/flutter-desktop-embedding.git
       path: plugins/window_size
+  appwrite: ^0.7.0
+  awesome_dialog: ^2.1.0
   cupertino_icons: ^1.0.2
-  get: ^4.1.4
-  supabase: ^0.0.1-dev.21
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +68,3 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
