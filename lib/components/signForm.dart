@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:fit_gym/components/common_form_field.dart';
+import 'package:fit_gym/components/custom_awesome_dialog.dart';
 import 'package:fit_gym/screens/mainpage.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
@@ -45,7 +46,7 @@ class SignInFormState extends State<SignInForm> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               MaterialButton(
-                  minWidth: MediaQuery.of(context).size.width / 8,
+                  minWidth: size.width / 8,
                   height: 60,
                   color: mainColor,
                   onPressed: () async {
@@ -59,57 +60,24 @@ class SignInFormState extends State<SignInForm> {
                     );
                     switch (regResult) {
                       case 200:
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.SUCCES,
-                          animType: AnimType.BOTTOMSLIDE,
-                          title: 'Kayıt Başarılı 200',
-                          desc: 'Kayıt Başarılı Artık Giriş Yapabilirsiniz.',
-                          btnCancelOnPress: () {},
-                          btnOkOnPress: () {},
-                        )..show();
+                        customAwesomeDialog(context, 200);
                         break;
                       case 201:
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.INFO,
-                          animType: AnimType.BOTTOMSLIDE,
-                          title: 'Kayıt Başarılı 201',
-                          desc: 'Kayıt Başarılı Artık Giriş Yapabilirsiniz.',
-                          btnCancelOnPress: () {},
-                          btnOkOnPress: () {},
-                        )..show();
+                        customAwesomeDialog(context, 201);
                         break;
                       case 400:
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.INFO,
-                          animType: AnimType.BOTTOMSLIDE,
-                          title: 'Kayıt Başarısız',
-                          desc: 'Kayıt Başarısız Tekrar Deneyin',
-                          btnCancelOnPress: () {},
-                          btnOkOnPress: () {},
-                        )..show();
+                        customAwesomeDialog(context, 400);
                         break;
                       case 409:
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.INFO,
-                          animType: AnimType.BOTTOMSLIDE,
-                          title: 'Mail Adresi Zaten Kayıtlı.',
-                          desc:
-                              'Mail Adresi kayıtlı Lütfen Başka Bir Mail Adresi Kullanın',
-                          btnCancelOnPress: () {},
-                          btnOkOnPress: () {},
-                        )..show();
+                        customAwesomeDialog(context, 409);
                         break;
                       default:
                         AwesomeDialog(
                           context: context,
-                          dialogType: DialogType.INFO,
+                          dialogType: DialogType.ERROR,
                           animType: AnimType.BOTTOMSLIDE,
-                          title: 'Kayıt Başarılı Default',
-                          desc: 'Kayıt Başarılı Artık Giriş Yapabilirsiniz.',
+                          title: 'Bir Sorun Oluştu',
+                          desc: 'Bir Sorun Oluştu. Tekrar Deneyiniz',
                           btnCancelOnPress: () {},
                           btnOkOnPress: () {},
                         )..show();
@@ -120,7 +88,7 @@ class SignInFormState extends State<SignInForm> {
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   )),
               MaterialButton(
-                  minWidth: MediaQuery.of(context).size.width / 8,
+                  minWidth: size.width / 8,
                   height: 60,
                   color: mainColor,
                   onPressed: () {

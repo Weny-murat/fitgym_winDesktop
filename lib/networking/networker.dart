@@ -10,7 +10,7 @@ class Networker {
         .setSelfSigned();
   }
 
-  userRegister({
+  Future userRegister({
     required String email,
     required String password,
   }) async {
@@ -20,7 +20,7 @@ class Networker {
         email: email,
         password: password,
       );
-      print(response.data);
+      print(response.data.runtimeType);
       return response.statusCode;
     } on AppwriteException catch (e) {
       return e.code;
